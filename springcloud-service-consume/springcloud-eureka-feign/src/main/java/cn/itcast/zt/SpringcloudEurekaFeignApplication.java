@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * 在应用主类中通过@EnableFeignClients注解开启Feign功能
+ *
  */
 @EnableDiscoveryClient
 @EnableFeignClients
