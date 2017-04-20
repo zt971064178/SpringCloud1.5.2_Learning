@@ -14,7 +14,7 @@ public class ConsumerController {
     private ComputeClient computeClient ;
 
     /**
-     * 调用远程服务就像吊啊用本地服务一样
+     * 调用远程服务就像调用用本地服务一样
      * @return
      */
     @GetMapping(value = "/addFeign")
