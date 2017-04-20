@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker// 开启断路器功能
+// @SpringCloudApplication
 public class SpringcloudEurekaRibbonApplication {
 
 	@Bean
