@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * http://127.0.0.1:7002/from
+ * 如果配置中心的from的值是一个数组，取得是最新的一个版本
  * Created by zhangtian on 2017/4/21.
  */
 @RestController

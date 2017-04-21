@@ -7,9 +7,18 @@ server:
 
 spring:
   application:
-    name: ztspace    # 对应microservice-config-server所获取的配置文件的{application}
+    name: ztspace    # 对应ztspace所获取的配置文件的{application}
   cloud:
     config:
       uri: http://localhost:7001/
-      profile: dev                      # 指定profile，对应microservice-config-server所获取的配置文件中的{profile} 
-      label: master                     # 指定git仓库的分支，对应microservice-config-server所获取的配置文件的{label}
+      profile: prod                      # 指定profile，对应ztspace所获取的配置文件中的{profile}
+      label: master                     # 指定git仓库的分支，对应ztspace所获取的配置文件的{label}
+
+
+
+# spring.application.name：对应前配置文件中的{application}部分
+# spring.cloud.config.profile：对应前配置文件中的{profile}部分
+# spring.cloud.config.label：对应前配置文件的git分支
+# spring.cloud.config.uri：配置中心的地址
+# 上面这些属性必须配置在bootstrap.properties中，config部分内容才能被正确加载。
+# 因为config的相关配置会先于application.properties，而bootstrap.properties的加载也是先于application.properties
