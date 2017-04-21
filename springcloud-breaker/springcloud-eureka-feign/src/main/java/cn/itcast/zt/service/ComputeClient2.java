@@ -1,6 +1,7 @@
 package cn.itcast.zt.service;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by zhangtian on 2017/4/20.
  */
 @FeignClient(value = "compute-service", fallback = ComputeClientHystrix.class)
+@Primary
 public interface ComputeClient2 {
 
     /**
