@@ -6,7 +6,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
 // 添加@EnableConfigServer注解，开启Config Server
-@EnableCon
+@EnableConfigServer
 public class SpringcloudConfigServerApplication {
 
 	public static void main(String[] args) {
