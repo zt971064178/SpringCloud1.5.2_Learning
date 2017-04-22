@@ -19,8 +19,8 @@ public class ConsumerController {
      * @return
      */
     @GetMapping(value = "/addFeign")
-    public Integer add() {
-        return computeClient.add(10, 40) ;
+    public String add() {
+        return computeClient.add(20, 40) ;
     }
 
 }

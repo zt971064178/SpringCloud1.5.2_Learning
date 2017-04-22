@@ -15,6 +15,6 @@ public class ConsumerController {
 
     @GetMapping(value = "/addRibbon")
     public String add() {
-        return restTemplate.getForEntity("http://COMPUTE-SERVICE/add?a=10&b=20", String.class).getBody() ;
+        return restTemplate.getForEntity("http://COMPUTE-SERVICE/add?a=90&b=20", String.class).getBody() ;
     }
 }

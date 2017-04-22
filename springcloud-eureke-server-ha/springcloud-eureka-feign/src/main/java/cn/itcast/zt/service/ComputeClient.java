@@ -18,5 +18,6 @@ public interface ComputeClient {
      * @return
      */
     @GetMapping(value = "/add")
-    public Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b) ;
+    // 注意此处调用的add远程方法返回的是个String类型的结果
+    public String add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b) ;
 }
