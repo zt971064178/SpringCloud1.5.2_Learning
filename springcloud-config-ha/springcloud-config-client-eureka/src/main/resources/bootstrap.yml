@@ -1,0 +1,37 @@
+management:
+  security:
+    enabled: false
+
+server:
+  port: 7002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+
+spring:
+  application :
+    name: ztspace
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: ztspace
+      profile: dev
+      failFast: true
+
+
+
+
+# spring.application.name：对应前配置文件中的{application}部分
+# spring.cloud.config.profile：对应前配置文件中的{profile}部分
+# spring.cloud.config.label：对应前配置文件的git分支
+# spring.cloud.config.uri：配置中心的地址
+# 上面这些属性必须配置在bootstrap.properties中，config部分内容才能被正确加载。
+# 因为config的相关配置会先于application.properties，而bootstrap.properties的加载也是先于application.properties
+
+# 通过eureka.client.serviceUrl.defaultZone参数指定服务注册中心，
+# 用于服务的注册与发现，再将spring.cloud.config.discovery.enabled参数设置为true，开启通过服务来访问Config Server的功能，
+# 最后利用spring.cloud.config.discovery.serviceId参数来指定Config Server注册的服务名。
+# 这里的spring.application.name和spring.cloud.config.profile如之前通过URI的方式访问时候一样，用来定位Git中的资源
