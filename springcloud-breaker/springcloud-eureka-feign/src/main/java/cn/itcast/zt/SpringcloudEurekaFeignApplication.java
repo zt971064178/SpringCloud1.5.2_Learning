@@ -2,8 +2,10 @@ package cn.itcast.zt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 
 /**
  * 通过feign实现的服务单元，依赖compute-service的服务，端口3334
@@ -14,6 +16,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableHystrixDashboard
+@EnableCircuitBreaker
 @SpringBootApplication
 //@SpringCloudApplication
 public class SpringcloudEurekaFeignApplication {

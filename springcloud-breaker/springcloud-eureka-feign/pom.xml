@@ -41,10 +41,10 @@
 		</dependency>
 
 		<!-- 加入断路器控制hystrix -->
-		<!--<dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-hystrix</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<!-- Hystrix Dashboard 监控 -->
 		<dependency>
