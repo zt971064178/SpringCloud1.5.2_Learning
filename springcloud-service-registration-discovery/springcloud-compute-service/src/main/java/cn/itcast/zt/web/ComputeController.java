@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,9 @@ public class ComputeController {
     @Autowired
     private DiscoveryClient discoveryClient ;
 
+    @Autowired
+    private LoadBalancerClient loadBalancerClient ;
+
     @GetMapping(value = "/add")
     public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
         String serverId = registration.getServiceId() ;// 此处为compute-service
@@ -35,4 +39,11 @@ public class ComputeController {
         return r;
     }
 
+    @GetMapping(value = "/add2")
+    public Integer add2(@RequestParam Integer a, @RequestParam Integer b) {
+        ServiceInstance serviceInstance = loadBalancerClient.choose("compute-service") ;
+        Integer r = a + b;
+        logger.info("/add, host:" + serviceInstance.getHost() + ", service_id:" + serviceInstance.getServiceId() + ", result:" + r);
+        return r;
+    }
 }
