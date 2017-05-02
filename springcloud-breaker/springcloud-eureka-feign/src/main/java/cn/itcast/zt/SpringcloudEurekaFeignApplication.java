@@ -12,6 +12,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
  * @FeignClient中的fallback : 指定回调类。
  * @EnableFeignClients : 开启 Fegin 功能（包括 Hystrix ）。
  * @EnableHystrixDashboard : 开启 Hystrix Dashboard 监控视图
+ * http://blog.csdn.net/forezp/article/details/70233227
  */
 @EnableDiscoveryClient
 @EnableFeignClients

@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * 通过ribbon实现的服务单元，依赖compute-service的服务，端口3333
  * 在eureka-ribbon的主类RibbonApplication中使用@EnableCircuitBreaker注解开启断路器功能
+ * http://blog.csdn.net/forezp/article/details/70233227
  */
 @SpringBootApplication
 @EnableDiscoveryClient
