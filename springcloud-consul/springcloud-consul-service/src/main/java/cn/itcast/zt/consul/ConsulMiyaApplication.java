@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * http://blog.csdn.net/forezp/article/details/70245644
  * http://blog.csdn.net/forezp/article/details/70188595
  * 服务注册到服务注册中心Consul
+ *
  * Created by zhangtian on 2017/5/2.
  */
 @SpringBootApplication
