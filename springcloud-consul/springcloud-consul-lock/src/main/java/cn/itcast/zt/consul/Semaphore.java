@@ -42,7 +42,7 @@ public class Semaphore extends BaseLock{
      * @return
      * @throws IOException
      */
-    public Boolean acquired(boolean block) throws IOException {
+    public Boolean acquired(boolean block) throws Exception {
         if (acquired) {
             logger.error("{} - Already acquired"+ sessionId);
             throw new RuntimeException(sessionId + " - Already acquired");
@@ -120,7 +120,7 @@ public class Semaphore extends BaseLock{
      *
      * @throws IOException
      */
-    public void release() throws IOException {
+    public void release() throws Exception {
         if (this.acquired) {
             // remove session int /.lock's holders list
             while (true) {

@@ -60,7 +60,7 @@ class SemaphoreRunner implements Runnable {
                 // Session锁释放
                 // Session删除
                 semaphore.release();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
