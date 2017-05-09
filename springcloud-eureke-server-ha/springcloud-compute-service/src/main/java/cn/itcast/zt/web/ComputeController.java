@@ -34,4 +34,10 @@ public class ComputeController {
         }
         return "Result is " + r;
     }
+
+    @GetMapping(value = "instance-info")
+    public List<ServiceInstance> showInfo() {
+        List<ServiceInstance> serviceInstance = this.discoveryClient.getInstances(registration.getServiceId()) ;
+        return serviceInstance ;
+    }
 }
