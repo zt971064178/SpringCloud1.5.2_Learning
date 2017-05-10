@@ -27,8 +27,8 @@ public class AuthenticationController {
     private JsonWebTokenUtility tokenService = new JsonWebTokenUtility();
 
     // 作为被调用方法传递对象时被调用的方法可以加入@RequestBody
-    @PostMapping(value = "authenticate", produces = "application/json")
-    public AuthTokenDTO authenticate(/*@RequestBody*/ AuthenticationDTO authenticationDTO) {
+    @PostMapping(value = "authenticate"/*, produces = "application/json"*/)
+    public AuthTokenDTO authenticate(@RequestBody AuthenticationDTO authenticationDTO) {
         AuthTokenDTO authToken = null;
 
         // Authenticate the user

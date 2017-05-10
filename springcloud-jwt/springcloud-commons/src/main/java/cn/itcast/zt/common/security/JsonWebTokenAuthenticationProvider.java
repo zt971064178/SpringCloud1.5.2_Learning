@@ -11,9 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,9 +36,11 @@ public class JsonWebTokenAuthenticationProvider implements AuthenticationProvide
             UserDetails userDetails = parseToken(tokenHeader) ;
             if(userDetails != null) {
                 authenticatedUser = new JsonWebTokenAuthentication(userDetails, tokenHeader) ;
+                authenticatedUser.setAuthenticated(true);// 解析到token中有数据，设置认证校验通过,拦截器终止
             }else {
                 // It is already a JsonWebTokenAuthentication
-                authenticatedUser = authentication;
+                // authenticatedUser = authentication;// 校验不通过  进入spring security的拦截器
+                authenticatedUser = null ;// 设置为null  不再进入拦截器判断
             }
         }
         return authenticatedUser;
@@ -50,22 +50,15 @@ public class JsonWebTokenAuthenticationProvider implements AuthenticationProvide
         UserDetails principal = null;
         AuthTokenDetailsDTO authTokenDetails = jsonWebTokenUtility.parseAndValidate(tokenHeader);
 
-        List<GrantedAuthority> authorities = null ;
         if (authTokenDetails != null) {
             List<String> roleIds = authTokenDetails.getRoleIds() ;
             List<String> roleNames = authTokenDetails.getRolesNames() ;
             if (roleIds != null) {
-                authorities = authTokenDetails.getRoleIds().stream().map(roleId->new SimpleGrantedAuthority(roleId)).collect(Collectors.toList());
+                List<GrantedAuthority> authorities = authorities = authTokenDetails.getRoleIds().stream().map(roleId->new SimpleGrantedAuthority(roleId)).collect(Collectors.toList());
                 // 既然在toekn生成以及parseAndValidate解析中加入了roleIds，roleNames，则authorities需要将两者都加入，否则匹配失败
                 authorities.addAll(authTokenDetails.getRolesNames().stream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList()));
-            }else {
-                // 没有角色访问不了,即没有操作该API权限
-                authorities = new ArrayList<>() ;
+                principal = new User(authTokenDetails.getEmail(), "", authorities);
             }
-            principal = new User(authTokenDetails.getEmail(), "", authorities);
-        }else {
-            authorities = new ArrayList<>() ;
-            principal = new User("default@default.com", "", authorities);
         }
 
         return principal;
