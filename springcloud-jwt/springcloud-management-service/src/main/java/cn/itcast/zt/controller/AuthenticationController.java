@@ -8,10 +8,7 @@ import cn.itcast.zt.dto.RoleDTO;
 import cn.itcast.zt.dto.UserDTO;
 import cn.itcast.zt.service.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Collection;
@@ -29,7 +26,7 @@ public class AuthenticationController {
     private UserManagementService userManagementService;
     private JsonWebTokenUtility tokenService = new JsonWebTokenUtility();
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @PostMapping(value = "authenticate")
     public AuthTokenDTO authenticate(@RequestBody AuthenticationDTO authenticationDTO) {
         AuthTokenDTO authToken = null;
 
