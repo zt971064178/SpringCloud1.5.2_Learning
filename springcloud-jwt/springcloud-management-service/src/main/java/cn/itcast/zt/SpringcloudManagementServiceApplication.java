@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+/**
+ * http://www.ctolib.com/spring-boot-jwt.html#articleHeader0
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SpringcloudManagementServiceApplication {
