@@ -21,7 +21,7 @@ public class AuthenticationController {
     @PostMapping(value = "authenticate", produces="application/json")
     public AuthTokenDTO authenticate(/*@RequestBody*/ AuthenticationDTO authenticationDTO) {
         // Authenticate the user
-        AuthTokenDTO authTokenDTO = cloudUserManagementServiceAPI.authenticateUser(authenticationDTO) ;
+        AuthTokenDTO authTokenDTO = cloudUserManagementServiceAPI.authenticateUser(authenticationDTO) ;// 传递对象时被调用的方法可以加入@RequestBody
         // TODO If authentication fails, return an unauthorized error code
         return authTokenDTO ;
     }

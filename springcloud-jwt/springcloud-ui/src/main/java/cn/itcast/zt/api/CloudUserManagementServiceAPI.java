@@ -17,7 +17,7 @@ import java.util.Collection;
 public interface CloudUserManagementServiceAPI {
     // 认证用户，不需要认证
     @PostMapping(value = "authenticate")
-    AuthTokenDTO authenticateUser(@RequestBody AuthenticationDTO authenticationDTO);
+    AuthTokenDTO authenticateUser(@RequestBody AuthenticationDTO authenticationDTO);// 传递对象时被调用的方法可以加入@RequestBody
 
     // 创建角色，需要认证
     @PostMapping(value = "roles")

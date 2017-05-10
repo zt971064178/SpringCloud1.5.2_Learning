@@ -45,6 +45,11 @@ public class UserController extends BaseController {
         return userManagementAPI.findAllUsers(getAuthorizationToken());
     }
 
+    @GetMapping("index")
+    public String index(){
+        return "Hello World!!!" ;
+    }
+
     /**
      * 查询用户详情
      * @param id
