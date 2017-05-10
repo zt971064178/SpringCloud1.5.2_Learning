@@ -36,23 +36,23 @@ public abstract class JsonWebTokenSecurityConfig extends WebSecurityConfigurerAd
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                // disable CSRF, http basic, form login
-                .csrf().disable() //
-                .httpBasic().disable() //
-                .formLogin().disable()
+            // disable CSRF, http basic, form login
+            .csrf().disable() //
+            .httpBasic().disable() //
+            .formLogin().disable()
 
-                // ReST is stateless, no sessions
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //
+            // ReST is stateless, no sessions
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //
 
-                .and()
+            .and()
 
-                // return 403 when not authenticated
-                .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+            // return 403 when not authenticated
+            .exceptionHandling().authenticationEntryPoint(new Http403ForbiddenEntryPoint());
 
-        // Let child classes set up authorization paths
-        setupAuthorization(http);
+            // Let child classes set up authorization paths
+            setupAuthorization(http);
 
-        http.addFilterBefore(jsonWebTokenFilter, UsernamePasswordAuthenticationFilter.class);
+            http.addFilterBefore(jsonWebTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     protected abstract void setupAuthorization(HttpSecurity http) throws Exception;
