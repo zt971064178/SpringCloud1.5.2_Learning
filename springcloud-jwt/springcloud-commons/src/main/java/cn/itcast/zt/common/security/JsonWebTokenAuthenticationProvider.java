@@ -50,18 +50,22 @@ public class JsonWebTokenAuthenticationProvider implements AuthenticationProvide
         UserDetails principal = null;
         AuthTokenDetailsDTO authTokenDetails = jsonWebTokenUtility.parseAndValidate(tokenHeader);
 
+        List<GrantedAuthority> authorities = null ;
         if (authTokenDetails != null) {
-            List<GrantedAuthority> authorities = null ;
             List<String> roleIds = authTokenDetails.getRoleIds() ;
             List<String> roleNames = authTokenDetails.getRolesNames() ;
             if (roleIds != null) {
                 authorities = authTokenDetails.getRoleIds().stream().map(roleId->new SimpleGrantedAuthority(roleId)).collect(Collectors.toList());
-                //authorities = authTokenDetails.getRolesNames().stream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+                // 既然在toekn生成以及parseAndValidate解析中加入了roleIds，roleNames，则authorities需要将两者都加入，否则匹配失败
+                authorities.addAll(authTokenDetails.getRolesNames().stream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList()));
             }else {
                 // 没有角色访问不了,即没有操作该API权限
                 authorities = new ArrayList<>() ;
             }
             principal = new User(authTokenDetails.getEmail(), "", authorities);
+        }else {
+            authorities = new ArrayList<>() ;
+            principal = new User("default@default.com", "", authorities);
         }
 
         return principal;

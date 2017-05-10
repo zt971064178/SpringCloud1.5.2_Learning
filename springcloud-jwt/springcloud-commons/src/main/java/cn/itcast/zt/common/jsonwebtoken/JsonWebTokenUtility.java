@@ -10,6 +10,7 @@ import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 /**
  * 产生token的主要类
@@ -89,7 +90,11 @@ public class JsonWebTokenUtility {
             authTokenDetailsDTO.setRolesNames(roleNames);
             authTokenDetailsDTO.setExpirationDate(expirationDate);
         }catch (JwtException ex) {
+            System.out.println("请求头Authorization的token数据不符合要求，不是相关参数组成的数据！");
             ex.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("请求头Authorization的token 数据不能为空！");
+            e.printStackTrace();
         }
         return authTokenDetailsDTO ;
     }
