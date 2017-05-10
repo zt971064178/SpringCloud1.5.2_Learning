@@ -11,7 +11,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +51,16 @@ public class JsonWebTokenAuthenticationProvider implements AuthenticationProvide
         AuthTokenDetailsDTO authTokenDetails = jsonWebTokenUtility.parseAndValidate(tokenHeader);
 
         if (authTokenDetails != null) {
-            List<GrantedAuthority> authorities = authTokenDetails.getRolesNames().stream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+            List<GrantedAuthority> authorities = null ;
+            List<String> roleIds = authTokenDetails.getRoleIds() ;
+            List<String> roleNames = authTokenDetails.getRolesNames() ;
+            if (roleIds != null) {
+                authorities = authTokenDetails.getRoleIds().stream().map(roleId->new SimpleGrantedAuthority(roleId)).collect(Collectors.toList());
+                //authorities = authTokenDetails.getRolesNames().stream().map(roleName -> new SimpleGrantedAuthority(roleName)).collect(Collectors.toList());
+            }else {
+                // 没有角色访问不了,即没有操作该API权限
+                authorities = new ArrayList<>() ;
+            }
             principal = new User(authTokenDetails.getEmail(), "", authorities);
         }
 

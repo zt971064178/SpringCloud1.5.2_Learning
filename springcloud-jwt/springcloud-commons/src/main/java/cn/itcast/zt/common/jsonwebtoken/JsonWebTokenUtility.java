@@ -58,7 +58,8 @@ public class JsonWebTokenUtility {
         String token = Jwts.builder()
                             .setSubject(authTokenDetailsDTO.getUserId())
                             .claim("email", authTokenDetailsDTO.getEmail())
-                            .claim("roles", authTokenDetailsDTO.getRolesNames())
+                            .claim("roleIds", authTokenDetailsDTO.getRoleIds())// 新增roleIds
+                            .claim("roleNames", authTokenDetailsDTO.getRolesNames())
                             .setExpiration(authTokenDetailsDTO.getExpirationDate())
                             .signWith(getSignatureAlgorithm(), getSecretKey())
                             .compact() ;
@@ -78,11 +79,13 @@ public class JsonWebTokenUtility {
             String userId = claims.getSubject() ;
             String email = (String) claims.get("email");
             List<String> roleNames = (List<String>) claims.get("roleNames");
+            List<String> roleIds = (List<String>) claims.get("roleIds");// 新增roleIds
             Date expirationDate = claims.getExpiration() ;
 
             authTokenDetailsDTO = new AuthTokenDetailsDTO() ;
             authTokenDetailsDTO.setUserId(userId);
             authTokenDetailsDTO.setEmail(email);
+            authTokenDetailsDTO.setRoleIds(roleIds);
             authTokenDetailsDTO.setRolesNames(roleNames);
             authTokenDetailsDTO.setExpirationDate(expirationDate);
         }catch (JwtException ex) {

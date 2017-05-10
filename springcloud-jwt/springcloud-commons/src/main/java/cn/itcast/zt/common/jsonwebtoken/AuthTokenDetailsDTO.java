@@ -12,6 +12,7 @@ public class AuthTokenDetailsDTO {
     private String userId ;
     private String email;
     private List<String> rolesNames ;
+    private List<String> roleIds ;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private Date expirationDate ;
 
@@ -37,6 +38,14 @@ public class AuthTokenDetailsDTO {
 
     public void setRolesNames(List<String> rolesNames) {
         this.rolesNames = rolesNames;
+    }
+
+    public List<String> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<String> roleIds) {
+        this.roleIds = roleIds;
     }
 
     public Date getExpirationDate() {

@@ -26,8 +26,8 @@ public class AuthenticationController {
     private UserManagementService userManagementService;
     private JsonWebTokenUtility tokenService = new JsonWebTokenUtility();
 
-    @PostMapping(value = "authenticate")
-    public AuthTokenDTO authenticate(@RequestBody AuthenticationDTO authenticationDTO) {
+    @PostMapping(value = "authenticate", produces="application/json")
+    public AuthTokenDTO authenticate(/*@RequestBody*/ AuthenticationDTO authenticationDTO) {
         AuthTokenDTO authToken = null;
 
         // Authenticate the user
@@ -37,13 +37,19 @@ public class AuthenticationController {
         if (userDTO != null) {
 
             Collection<RoleDTO> roles = userManagementService.findAllRolesForUser(userDTO.getId());
-            List<String> roleNames = roles.stream().map(r -> r.getName()).collect(Collectors.toList());
+            List<String> roleNames = null ;
+            List<String> roleIds = null ;// 新增roleIds
+            if(roles != null) {
+                roleIds = roles.stream().map(r->r.getId()).collect(Collectors.toList());
+                roleNames = roles.stream().map(r -> r.getName()).collect(Collectors.toList());
+            }
 
             // Build the AuthTokenDetailsDTO
             AuthTokenDetailsDTO authTokenDetailsDTO = new AuthTokenDetailsDTO();
 
             authTokenDetailsDTO.setUserId(userDTO.getId());
             authTokenDetailsDTO.setEmail(userDTO.getEmail());
+            authTokenDetailsDTO.setRoleIds(roleIds);
             authTokenDetailsDTO.setRolesNames(roleNames);
             authTokenDetailsDTO.setExpirationDate(buildExpirationDate());
 
