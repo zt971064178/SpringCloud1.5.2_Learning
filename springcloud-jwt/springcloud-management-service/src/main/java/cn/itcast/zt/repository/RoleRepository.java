@@ -1,4 +1,4 @@
-package cn.itcast.zt.repository.repository;
+package cn.itcast.zt.repository;
 
 import cn.itcast.zt.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

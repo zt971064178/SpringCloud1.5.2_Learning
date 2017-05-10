@@ -34,11 +34,11 @@ public class DataInitializer implements CommandLineRunner {
         RoleDTO managerRole = service.createRole(new RoleDTO("manager"));
 
         // Create Users
-        UserDTO userA = service.createUser(new UserDTO("a@alpha.org", "password-a", roleDTOsToIdCollection(adminRole)));
+        UserDTO userA = service.createUser(new UserDTO(null,"a@alpha.org", "password-a", roleDTOsToIdCollection(adminRole)));
         UserDTO userB = service
-                .createUser(new UserDTO("b@alpha.org", "password-b", roleDTOsToIdCollection(managerRole)));
+                .createUser(new UserDTO(null,"b@alpha.org", "password-b", roleDTOsToIdCollection(managerRole)));
         UserDTO userC = service
-                .createUser(new UserDTO("c@alpha.org", "password-c", roleDTOsToIdCollection(adminRole, managerRole)));
+                .createUser(new UserDTO(null,"c@alpha.org", "password-c", roleDTOsToIdCollection(adminRole, managerRole)));
 
         service.findAllRoles().forEach(r -> System.out.println(r));
         service.findAllUsers().forEach(u -> System.out.println(u));

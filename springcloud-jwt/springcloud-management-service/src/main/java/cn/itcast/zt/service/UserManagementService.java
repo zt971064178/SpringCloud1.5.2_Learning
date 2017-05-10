@@ -5,7 +5,7 @@ import cn.itcast.zt.domain.User;
 import cn.itcast.zt.dto.RoleDTO;
 import cn.itcast.zt.dto.UserDTO;
 import cn.itcast.zt.repository.UserRepository;
-import cn.itcast.zt.repository.repository.RoleRepository;
+import cn.itcast.zt.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
