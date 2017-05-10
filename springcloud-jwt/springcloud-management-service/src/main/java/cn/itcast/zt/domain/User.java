@@ -11,6 +11,7 @@ import java.util.Set;
  */
 @Entity
 public class User {
+    @Id
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
     private String id ;
