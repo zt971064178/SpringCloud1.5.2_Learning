@@ -40,7 +40,7 @@ public class JsonWebTokenAuthenticationProvider implements AuthenticationProvide
             }else {
                 // It is already a JsonWebTokenAuthentication
                 // authenticatedUser = authentication;// 校验不通过  进入spring security的拦截器
-                authenticatedUser = null ;// 设置为null  不再进入拦截器判断
+                authenticatedUser = null ;// 设置为null  进入拦截器验证不通过
             }
         }
         return authenticatedUser;
