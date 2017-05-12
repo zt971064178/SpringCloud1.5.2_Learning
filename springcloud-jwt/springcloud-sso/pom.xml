@@ -56,6 +56,12 @@
 			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
 
+		<!-- 设置 audience 用到 -->
+		<dependency>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
