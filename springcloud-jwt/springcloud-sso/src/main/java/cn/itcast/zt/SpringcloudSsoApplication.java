@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * http://git.oschina.net/lemosd/lop
- * https://github.com/niuyuzhou/staffManager
  */
 @SpringBootApplication
 public class SpringcloudSsoApplication {
